@@ -7,7 +7,7 @@ const gameBoard = (() => {
     _htmlBoxes.forEach(box => {
         box.addEventListener('click', () => {
             const index = Array.from(_htmlBoxes).indexOf(box);
-            if (!_board[index]) {
+            if (!_board[index] && !gameManager.getGameOver()) {
                 _board[index] = gameManager.player.getMarker();
                 renderBoard();
                 checkGameState();
@@ -69,17 +69,22 @@ const Player = (name) => {
 }
 
 const gameManager = (() => {
+    let isGameOver = false;
     const player = Player();
     const win = () => {
-        document.querySelector('.header').textContent = player.getMarker() + ' wins!';  
+        document.querySelector('.header').textContent = player.getMarker() + ' wins!';
+        isGameOver = true;
     }
     const draw = () => {
         document.querySelector('.header').textContent = 'Draw!';
+        isGameOver = true;
     }
     const resetGame = () => {
         document.querySelector('.header').textContent = 'TIC-TAC-TOE';
         gameBoard.resetMarkers();
+        isGameOver = false;
     }
+    const getGameOver = () => {return isGameOver};
     document.querySelector('.reset-button').addEventListener("click", resetGame);
-    return {player, declareWinner: win, resetGame, draw}
+    return {player, getGameOver, declareWinner: win, resetGame, draw}
 })();
