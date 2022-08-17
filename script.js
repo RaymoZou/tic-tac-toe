@@ -29,7 +29,7 @@ const gameBoard = (() => {
         if (_board[0]) checkTriplet(0, 4, 8);
         if (_board[2]) checkTriplet(2, 4, 6);
         // check draw
-        if (!_board.includes(null) && !gameManager.getGameOver) gameManager.draw();
+        if (!_board.includes(null) && !gameManager.getGameOver()) gameManager.draw();
     }
 
     const checkTriplet = (num1, num2, num3) => {
