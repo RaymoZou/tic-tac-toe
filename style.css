@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
 
 body {
+    background-color: #F7F7F7;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -10,38 +11,51 @@ body {
     gap: 8px;
 }
 
+.blue {
+    color: blue;
+}
+
 .box {
     display: flex;
     justify-content: center;
     align-items: center;
     border: solid black 5px;
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
 }
 
 .box>.marker {
-    font-size: 100px;
+    font-size: 72px;
 }
 
 .header {
-    font-size: 100px;
+    font-size: 72px;
 }
 
 .game-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    width: 450px;
-    height: 450px;
-    background-color: rgb(96, 96, 254);
+    width: 330px;
+    height: 330px;
+    /* background-color: rgb(96, 96, 254); */
+    background-color: #FCF8E8;
     border: solid black 5px;
 }
 
 .reset-button {
     border: solid black 5px;
     background-color: yellow;
-    font-size: 46px;
-    padding: 12px;
+    font-size: 28px;
+    padding: 8px;
     border-radius: 8px;
     font-family: 'Silkscreen', sans-serif;
+}
+
+.reset-button:active {
+    background-color:rgb(217, 217, 0)
+}
+
+.red {
+    color: red;
 }

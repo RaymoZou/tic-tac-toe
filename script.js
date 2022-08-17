@@ -29,7 +29,7 @@ const gameBoard = (() => {
         if (_board[0]) checkTriplet(0, 4, 8);
         if (_board[2]) checkTriplet(2, 4, 6);
         // check draw
-        if (!_board.includes(null)) gameManager.draw();
+        if (!_board.includes(null) && !gameManager.getGameOver) gameManager.draw();
     }
 
     const checkTriplet = (num1, num2, num3) => {
@@ -55,6 +55,11 @@ const gameBoard = (() => {
             const marker = document.createElement('div');
             marker.classList.add('marker');
             marker.textContent = _board[i];
+            if (_board[i] == 'O') {
+                marker.classList.add('red');
+            } else if (_board[i] == 'X') {
+                marker.classList.add('blue');
+            }
             _htmlBoxes[i].append(marker);
         }
     }
@@ -71,8 +76,10 @@ const Player = (name) => {
 const gameManager = (() => {
     let isGameOver = false;
     const player = Player();
+    const _header = document.querySelector('.header');
     const win = () => {
-        document.querySelector('.header').textContent = player.getMarker() + ' wins!';
+        _header.textContent = player.getMarker() + ' wins!';
+        _header.classList.add(player.getMarker() == 'X' ? 'blue' : 'red');
         isGameOver = true;
     }
     const draw = () => {
@@ -80,6 +87,8 @@ const gameManager = (() => {
         isGameOver = true;
     }
     const resetGame = () => {
+        _header.classList.remove('red');
+        _header.classList.remove('blue');
         document.querySelector('.header').textContent = 'TIC-TAC-TOE';
         gameBoard.resetMarkers();
         isGameOver = false;
